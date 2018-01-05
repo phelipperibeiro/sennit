@@ -12,6 +12,7 @@
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "0.9.*",
 	"mashape/unirest-php": "3.*",
+        "tymon/jwt-auth": "0.5.*",
         "phpunit/phpunit": "~4.0",
         "symfony/css-selector": "2.8.*|3.0.*",
         "symfony/dom-crawler": "2.8.*|3.0.*"

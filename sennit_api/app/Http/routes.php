@@ -11,13 +11,10 @@
   |
  */
 
-#https://rafaell-lycan.com/2016/construindo-restful-api-laravel-parte-3/
+Route::post('auth/login', 'AuthController@authenticate');
 
-Route::get('/', function () {
-    return view('index');
+Route::group(['middleware' => ['auth.token']], function () {
+    Route::get('cep/search', 'Cep@listAllCep');
+    Route::get('cep/search/{cep}', 'Cep@search');
+    Route::delete('cep/search/{cep}', 'Cep@destroy'); 
 });
-
-Route::get('cep/search', 'Cep@listAllCep');
-Route::get('cep/search/{cep}', 'Cep@search');
-Route::delete('cep/search/{cep}', 'Cep@destroy');
-

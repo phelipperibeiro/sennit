@@ -57,6 +57,14 @@ return [
             'driver' => 'local',
             'root' => storage_path('app/cep-data-base'),
         ],
+        'company-data-base' => [
+            'driver' => 'local',
+            'root' => storage_path('app/company-data-base'),
+        ],
+        'token-data-base' => [
+            'driver' => 'local',
+            'root' => storage_path('app/token-data-base'),
+        ],
 
         's3' => [
             'driver' => 's3',
