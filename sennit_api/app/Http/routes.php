@@ -11,10 +11,12 @@
   |
  */
 
-Route::post('auth/login', 'AuthController@authenticate');
+Route::get('auth/login', 'AuthController@authenticate');
 
 Route::group(['middleware' => ['auth.token']], function () {
+    
     Route::get('cep/search', 'Cep@listAllCep');
     Route::get('cep/search/{cep}', 'Cep@search');
-    Route::delete('cep/search/{cep}', 'Cep@destroy'); 
+    Route::delete('cep/search/{cep}', 'Cep@destroy');
+    
 });

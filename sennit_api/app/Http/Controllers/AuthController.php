@@ -22,7 +22,7 @@ class AuthController extends Controller
 
         // Get user by email
         $company = Company::hasCompany($credentials['email']);
-
+        
         // Validate Company
         if (!$company) {
             return response()->json([

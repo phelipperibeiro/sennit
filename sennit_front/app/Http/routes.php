@@ -11,13 +11,14 @@
   |
  */
 
-#https://rafaell-lycan.com/2016/construindo-restful-api-laravel-parte-3/
-
 Route::get('/', function () {
-    return view('index');
-});
 
-Route::get('cep/search', 'Cep@listAllCep');
-Route::get('cep/search/{cep}', 'Cep@search');
-Route::delete('cep/search/{cep}', 'Cep@destroy');
+    $password = 'mudar123';
+    
+    $email = 'fandrade@gmail.com.br';
+
+    $response = \Unirest\Request::get("http://localhost/sennit/sennit_api/public/auth/login?password=$password&email=$email");
+
+    return view('index', ['token' => $response->body->access_token]);
+});
 

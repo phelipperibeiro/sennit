@@ -172,6 +172,12 @@
         <script src="<?= asset('js/jquery.min.js') ?>"></script>
         <script src="<?= asset('js/bootstrap.min.js') ?>"></script>
 
+        <!-- Token Api -->
+        <input type="hidden" id="token" value="<?= $token;?>"> 
+        <script>
+             var token = $("#token").val();
+        </script>
+        
         <!-- AngularJS Application Scripts -->
         <script src="<?= asset('app/app.js') ?>"></script>
         <script src="<?= asset('app/controllers/cep.js') ?>"></script>

@@ -1,23 +1,25 @@
-app.controller('cepController', function ($scope, $http, API_URL, CSRF_TOKEN) {
+app.controller('cepController', function ($scope, $http, API_URL, TOKEN) {
+
+    var token_api = TOKEN;
 
     // ### show modal form ###
     $scope.showModal = function () {
         $('#myModal').modal('show');
     }
-
-    $http.get(API_URL + "cep/search")
+    
+    $http.get(API_URL + "cep/search?token=" + token_api)
             .then(function (success) {
                 console.log(success);
                 $scope.ceps = success;
             }, function (error) {
                 console.log(error);
-                alert('Unable to delete');
             });
 
     $scope.searchCep = function (cep) {
+
         var cep = $scope.cep;
 
-        $http.get(API_URL + "cep/search/" + cep)
+        $http.get(API_URL + "cep/search/" + cep + "?token=" + token_api)
                 .then(function (success) {
 
                     $scope._cep = success.data.logradouro;
@@ -48,8 +50,7 @@ app.controller('cepController', function ($scope, $http, API_URL, CSRF_TOKEN) {
 
             $http({
                 method: 'DELETE',
-                url: API_URL + 'cep/search/' + cep,
-                data: {csrf_token: CSRF_TOKEN}
+                url: API_URL + 'cep/search/' + cep + "?token=" + token_api
             })
                     .then(function (success) {
                         console.log(success);
