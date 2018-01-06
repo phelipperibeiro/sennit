@@ -6,7 +6,7 @@
         <title>Sennit</title>
 
         <!-- Load Bootstrap CSS -->
-        <link href="<?= asset('css/bootstrap.min.css') ?>" rel="stylesheet">
+        <link href="<?= asset('assets/css/bootstrap.min.css') ?>" rel="stylesheet">
     </head>
 
     <body>
@@ -168,9 +168,9 @@
         </div>
 
         <!-- Load Javascript Libraries (AngularJS, JQuery, Bootstrap) -->
-        <script src="<?= asset('app/lib/angular/angular.min.js') ?>"></script>
-        <script src="<?= asset('js/jquery.min.js') ?>"></script>
-        <script src="<?= asset('js/bootstrap.min.js') ?>"></script>
+        <script src="<?= asset('assets/app/lib/angular/angular.min.js') ?>"></script>
+        <script src="<?= asset('assets/js/jquery.min.js') ?>"></script>
+        <script src="<?= asset('assets/js/bootstrap.min.js') ?>"></script>
 
         <!-- Token Api -->
         <input type="hidden" id="token" value="<?= $token;?>"> 
@@ -179,6 +179,6 @@
         </script>
         
         <!-- AngularJS Application Scripts -->
-        <script src="<?= asset('app/app.js') ?>"></script>
-        <script src="<?= asset('app/controllers/cep.js') ?>"></script>
+        <script src="<?= asset('assets/app/app.js') ?>"></script>
+        <script src="<?= asset('assets/app/controllers/cep.js') ?>"></script>
     </body>
