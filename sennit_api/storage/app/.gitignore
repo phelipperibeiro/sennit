@@ -1,0 +1,5 @@
+*
+!public/
+!company-data-base/
+!cep-data-base/
+!.gitignore
