@@ -17,10 +17,12 @@ Route::group(['middleware' => ['auth.token']], function () {
 
     Route::get('cep/search', 'Cep@listAllCep');
     Route::get('cep/search/{cep}', 'Cep@search');
-    Route::delete('cep/search/{cep}', 'Cep@destroy');
+    Route::delete('cep/delete/{cep}', 'Cep@destroy');
 
     Route::post('company/create', 'Company@create');
-    Route::delete('company/search/{id}', 'Company@destroy');
+    Route::put('company/update/{id}', 'Company@update');
+    Route::get('company/search/{id}', 'Company@search');
     Route::get('company/search', 'Company@listAllCompany');
+    Route::delete('company/delete/{id}', 'Company@destroy');
     
 });

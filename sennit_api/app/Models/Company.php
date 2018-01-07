@@ -21,10 +21,10 @@ class Company extends Authenticatable
         if (isset($data['token'])) {
             unset($data['token']);
         }
-        
-        $data['id'] = md5(uniqid(rand(), true));    
+
+        $data['id'] = md5(uniqid(rand(), true));
         $data['password'] = md5($data['password']);
-       
+
         if (Storage::disk('company-data-base')->exists(self::$file)) {
             $dataBase = json_decode(Storage::disk('company-data-base')->get(self::$file), true);
             $dataBase[] = $data;
@@ -87,6 +87,18 @@ class Company extends Authenticatable
         return [];
     }
 
+    public static function findCompanyDataBase($id)
+    {
+        $dataBase = json_decode(Storage::disk('company-data-base')->get(self::$file), true);
+        $dataBase = self::sanitizeCompanyDataBase($dataBase);
+
+        if (!isset($dataBase[$id])) {
+            return [];
+        }
+
+        return $dataBase[$id];
+    }
+
     public static function deleteCompanyDataBase($id)
     {
         $dataBase = json_decode(Storage::disk('company-data-base')->get(self::$file), true);
@@ -97,6 +109,28 @@ class Company extends Authenticatable
         }
 
         unset($dataBase[$id]);
+        self::saveDatabase($dataBase);
+
+        return true;
+    }
+
+    public static function updateCompanyDataBase($data, $id)
+    {
+        $dataBase = json_decode(Storage::disk('company-data-base')->get(self::$file), true);
+        $dataBase = self::sanitizeCompanyDataBase($dataBase);
+
+        if (!isset($dataBase[$id])) {
+            return false;
+        }
+
+        if (isset($data['token'])) {
+            unset($data['token']);
+        }
+
+        $dataBase[$id]['email'] = isset($data['email']) ? $data['email'] : $dataBase[$id]['email'];
+        $dataBase[$id]['company'] = isset($data['company']) ? $data['company'] : $dataBase[$id]['company'];
+        $dataBase[$id]['password'] = isset($data['password']) ? md5($data['password']) : $dataBase[$id]['company'];
+
         self::saveDatabase($dataBase);
 
         return true;

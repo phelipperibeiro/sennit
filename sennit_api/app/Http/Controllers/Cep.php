@@ -18,7 +18,7 @@ class Cep extends Controller
         $data = $response->code == 200 ? (array) $response->body : [];
         
         if (!empty($data)) {
-            UtilsConsulta::createQueryDataBase($data);
+            UtilsConsulta::addCepDataBase($data);
         }
 
         return response()->json($data, $response->code);

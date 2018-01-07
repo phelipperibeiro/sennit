@@ -9,7 +9,7 @@ class UtilsConsulta
 
     private static $file = 'cep-data-base.json';
 
-    public static function createQueryDataBase($data)
+    public static function addCepDataBase($data)
     {
         #/conifg/filesystems.php
 
