@@ -14,9 +14,13 @@
 Route::get('auth/login', 'AuthController@authenticate');
 
 Route::group(['middleware' => ['auth.token']], function () {
-    
+
     Route::get('cep/search', 'Cep@listAllCep');
     Route::get('cep/search/{cep}', 'Cep@search');
     Route::delete('cep/search/{cep}', 'Cep@destroy');
+
+    Route::post('company/create', 'Company@create');
+    Route::delete('company/search/{id}', 'Company@destroy');
+    Route::get('company/search', 'Company@listAllCompany');
     
 });

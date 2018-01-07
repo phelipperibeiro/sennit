@@ -3,24 +3,28 @@
 namespace App\Models;
 
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Foundation\Auth\User as Authenticatable; 
-
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Company extends Authenticatable
 {
 
     private static $file = 'company-data-base.json';
 
-    public static function createQueryDataBase($data)
+    public static function addCompanyDataBase($data)
     {
-        #/conifg/filesystems.php
-
         $dir = storage_path("app/company-data-base");
 
         if (!is_dir($dir)) {
             mkdir($dir, 0775, true); // argumento true criar pastas recursivamente
         }
 
+        if (isset($data['token'])) {
+            unset($data['token']);
+        }
+        
+        $data['id'] = md5(uniqid(rand(), true));    
+        $data['password'] = md5($data['password']);
+       
         if (Storage::disk('company-data-base')->exists(self::$file)) {
             $dataBase = json_decode(Storage::disk('company-data-base')->get(self::$file), true);
             $dataBase[] = $data;
@@ -67,15 +71,14 @@ class Company extends Authenticatable
     {
         $sanitizeData = [];
         foreach ($data as $key => $value) {
-            if (isset($value['email'])) {
-                $sanitizeData[$value['email']] = $value;
+            if (isset($value['id'])) {
+                $sanitizeData[$value['id']] = $value;
             }
         }
-
         return $sanitizeData;
     }
 
-    public static function getCepDataBaseAll()
+    public static function getCompanyDataBaseAll()
     {
         if (Storage::disk('company-data-base')->exists(self::$file)) {
             return json_decode(Storage::disk('company-data-base')->get(self::$file), true);
@@ -84,16 +87,16 @@ class Company extends Authenticatable
         return [];
     }
 
-    public static function deleteCepDataBase($company)
+    public static function deleteCompanyDataBase($id)
     {
         $dataBase = json_decode(Storage::disk('company-data-base')->get(self::$file), true);
-        $dataBase = self::sanitizeCepDataBase($dataBase);
+        $dataBase = self::sanitizeCompanyDataBase($dataBase);
 
-        if (!isset($dataBase[$company])) {
+        if (!isset($dataBase[$id])) {
             return false;
         }
 
-        unset($dataBase[$company]);
+        unset($dataBase[$id]);
         self::saveDatabase($dataBase);
 
         return true;
