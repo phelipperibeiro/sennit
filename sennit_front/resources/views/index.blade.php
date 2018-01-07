@@ -6,7 +6,14 @@
         <title>Sennit</title>
 
         <!-- Load Bootstrap CSS -->
-        <link href="<?= asset('assets/css/bootstrap.min.css') ?>" rel="stylesheet">
+
+        <link href="{{ asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
+            
+        @if(Config::get('app.degub'))
+        @else
+            <!--<link href="{{ asset('assets/css/all.css')}}" rel="stylesheet">-->
+        @endif
+
     </head>
 
     <body>
@@ -45,15 +52,15 @@
 
                                     <tr ng-repeat="row in ceps.data">
 
-                                        <td>{{ row.cep}} </td>
-                                        <td>{{ row.logradouro}} </td>
-                                        <td>{{ row.complemento}} </td>
-                                        <td>{{ row.bairro}} </td>
-                                        <td>{{ row.localidade}} </td>
-                                        <td>{{ row.uf}} </td>
-                                        <td>{{ row.unidade}} </td>
-                                        <td>{{ row.ibge}} </td>
-                                        <td>{{ row.gia}} </td>
+                                        <td>@{{ row.cep}} </td>
+                                        <td>@{{ row.logradouro}} </td>
+                                        <td>@{{ row.complemento}} </td>
+                                        <td>@{{ row.bairro}} </td>
+                                        <td>@{{ row.localidade}} </td>
+                                        <td>@{{ row.uf}} </td>
+                                        <td>@{{ row.unidade}} </td>
+                                        <td>@{{ row.ibge}} </td>
+                                        <td>@{{ row.gia}} </td>
                                         <td>
                                             <button class="btn btn-danger btn-xs btn-delete" ng-click="confirmDelete(row.cep)">Delete</button>
                                         </td>
@@ -167,18 +174,25 @@
 
         </div>
 
-        <!-- Load Javascript Libraries (AngularJS, JQuery, Bootstrap) -->
-        <script src="<?= asset('assets/app/lib/angular/angular.min.js') ?>"></script>
-        <script src="<?= asset('assets/js/jquery.min.js') ?>"></script>
-        <script src="<?= asset('assets/js/bootstrap.min.js') ?>"></script>
+            <!-- Load Javascript Libraries (AngularJS, JQuery, Bootstrap) -->
+            <script src="{{ asset('assets/js/angular.min.js')}}"></script>
+            <script src="{{ asset('assets/js/jquery.min.js')}}"></script>
+            <script src="{{ asset('assets/js/bootstrap.min.js')}}"></script>
 
-        <!-- Token Api -->
-        <input type="hidden" id="token" value="<?= $token;?>"> 
-        <script>
-             var token = $("#token").val();
-        </script>
-        
-        <!-- AngularJS Application Scripts -->
-        <script src="<?= asset('assets/app/app.js') ?>"></script>
-        <script src="<?= asset('assets/app/controllers/cep.js') ?>"></script>
+            <!-- Token Api -->
+            <input type="hidden" id="token" value="{{ $token}}"> 
+            <script> var token = $("#token").val();</script>
+
+            <!-- AngularJS Application Scripts -->
+            <script src="{{ asset('assets/app/app.js')}}"></script>
+            <script src="{{ asset('assets/app/controllers/cep.js')}}"></script>
+        @if(Config::get('app.degub'))
+        @else
+            <!--<link href="{{ asset('assets/js/all.js')}}" >-->
+        @endif
+
+
+
+
+
     </body>
