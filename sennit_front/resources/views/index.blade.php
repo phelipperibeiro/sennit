@@ -6,7 +6,7 @@
         <title>Sennit</title>
 
         <!-- Load Bootstrap CSS -->
-        @if(Config::get('app.degub'))
+        @if(Config::get('app.debug'))
             <link href="{{ asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
         @else
             <link href="{{ asset('assets/css/all.css')}}" rel="stylesheet">
