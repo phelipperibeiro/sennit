@@ -49,7 +49,7 @@ app.controller('cepController', function ($scope, $http, API_URL, TOKEN) {
 
             $http({
                 method: 'DELETE',
-                url: API_URL + 'cep/search/' + cep + "?token=" + token_api
+                url: API_URL + 'cep/delete/' + cep + "?token=" + token_api
             })
                     .then(function (success) {
                         console.log(success);
