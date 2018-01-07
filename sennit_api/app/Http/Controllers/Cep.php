@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use App\Models\UtilsConsulta;
+use App\Models\Cep as Cep_Model;
 
 class Cep extends Controller
 {
@@ -18,7 +18,7 @@ class Cep extends Controller
         $data = $response->code == 200 ? (array) $response->body : [];
         
         if (!empty($data)) {
-            UtilsConsulta::addCepDataBase($data);
+            Cep_Model::addCepDataBase($data);
         }
 
         return response()->json($data, $response->code);
@@ -26,14 +26,14 @@ class Cep extends Controller
 
     public function destroy($cep)
     {
-        UtilsConsulta::deleteCepDataBase($cep);
+        Cep_Model::deleteCepDataBase($cep);
 
         return response()->json("CEP Deletado: $cep");
     }
 
     public function listAllCep()
     {
-        return response()->json(UtilsConsulta::getCepDataBaseAll());
+        return response()->json(Cep_Model::getCepDataBaseAll());
     }
 
 }

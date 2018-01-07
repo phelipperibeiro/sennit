@@ -15,7 +15,7 @@ Route::get('/', function () {
 
     $password = 'mudar123';
     
-    $email = 'fandrade@gmail.com.br';
+    $email = 'fandrade@gmail.com';
 
     $response = \Unirest\Request::get("http://localhost/sennit/sennit_api/public/auth/login?password=$password&email=$email");
 

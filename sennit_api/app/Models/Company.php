@@ -41,7 +41,7 @@ class Company extends Authenticatable
         $dataBase = [];
         if (Storage::disk('company-data-base')->exists(self::$file)) {
             $dataBase = json_decode(Storage::disk('company-data-base')->get(self::$file), true);
-            $dataBase = self::sanitizeCompanyDataBase($dataBase);
+            $dataBase = self::sanitizeCompanyDataBase($dataBase, 'email');
         }
 
         if (isset($dataBase[$email])) {
@@ -67,12 +67,13 @@ class Company extends Authenticatable
         Storage::disk('company-data-base')->put(self::$file, $data);
     }
 
-    public static function sanitizeCompanyDataBase($data)
+    public static function sanitizeCompanyDataBase($data, $key = 'id')
     {
         $sanitizeData = [];
-        foreach ($data as $key => $value) {
-            if (isset($value['id'])) {
-                $sanitizeData[$value['id']] = $value;
+        
+        foreach ($data as $value) {
+            if (isset($value[$key])) {
+                $sanitizeData[$value[$key]] = $value;
             }
         }
         return $sanitizeData;
