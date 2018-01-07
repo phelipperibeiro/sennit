@@ -21,7 +21,7 @@ app.controller('cepController', function ($scope, $http, API_URL, TOKEN) {
         $http.get(API_URL + "cep/search/" + cep + "?token=" + token_api)
                 .then(function (success) {
 
-                    $scope._cep = success.data.logradouro;
+                    $scope._cep = success.data.cep;
                     $scope._logradouro = success.data.logradouro;
                     $scope._complemento = success.data.complemento;
                     $scope._bairro = success.data.bairro;
