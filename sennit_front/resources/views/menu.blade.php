@@ -1,8 +1,8 @@
 <nav class="navbar navbar-light bg-faded"></nav>
 <nav class="navbar navbar-light bg-faded">
     <form class="form-inline">
-        <button class="btn btn-sm align-middle btn-outline-secondary" type="button">Consultar Cep</button>&nbsp&nbsp
-        <button class="btn btn-sm align-middle btn-outline-secondary" type="button">Companies</button>&nbsp&nbsp
-        <button class="btn btn-sm align-middle btn-outline-secondary" type="button">Sair do Sitema</button>&nbsp&nbsp
+        <a href="{{ url('cep') }}" class="btn btn-info" role="button">Consultar Cep</a>&nbsp&nbsp
+        <a href="{{ url('company') }}" class="btn btn-info" role="button">Companies</a>&nbsp&nbsp
+        <a href="{{ url('logout') }}" class="btn btn-info" role="button">Sair do Sitema</a>&nbsp&nbsp
     </form>
 </nav>
