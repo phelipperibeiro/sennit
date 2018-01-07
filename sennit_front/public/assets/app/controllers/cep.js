@@ -1,8 +1,7 @@
 app.controller('cepController', function ($scope, $http, API_URL, TOKEN) {
 
     var token_api = TOKEN;
-
-    // ### show modal form ###
+    
     $scope.showModal = function () {
         $('#myModal').modal('show');
     }
