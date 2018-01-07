@@ -14,7 +14,7 @@ app.controller('cepController', function ($scope, $http, API_URL, TOKEN) {
                 console.log(error);
             });
 
-    $scope.searchCep = function (cep) {
+    $scope.searchCep = function () {
 
         var cep = $scope.cep;
 

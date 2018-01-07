@@ -46,10 +46,12 @@ gulp.task('clear-public-folder', function(){
     clean.sync(config.assets_public);
 });
 
+// # env => true
 gulp.task('copy',['clear-public-folder'], function(){
     gulp.start('copy-styles','copy-scripts', 'copy-app');
 });
 
+// # env => false
 gulp.task('default',['clear-public-folder','copy-scripts'], function(){
     
     elixir(function (mix) {

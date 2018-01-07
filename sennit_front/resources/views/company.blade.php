@@ -15,35 +15,32 @@
     </head>
 
     <body>
+        
 
         <div class="container">
+            
 
             <div class="panel-group">
 
-                @include('menu')
 
+                @include('menu')
+                
                 <div class="panel panel-default">
-                   
+
                     <div class="panel-body">
 
-                        <h2>Consulta de Cep</h2>
+                        <h2>Company</h2>
 
-                        <div  ng-controller="cepController">
+                        <div  ng-controller="companyController">
 
                             <table class="table">
 
                                 <thead>                    
                                     <tr>
-                                        <th>CEP</th>
-                                        <th>logradouro</th>
-                                        <th>complemento</th>
-                                        <th>bairro</th>
-                                        <th>localidade</th>
-                                        <th>uf</th>
-                                        <th>unidade</th>
-                                        <th>ibge</th>
-                                        <th>gia</th>
-                                        <th><button id="btn-add" class="btn btn-primary btn-xs" ng-click="showModal()">Nova consulta de cep</button></th>
+                                        <th>ID</th>
+                                        <th>Company</th>
+                                        <th>Email</th>
+                                        <th><button id="btn-add" class="btn btn-primary btn-xs" ng-click="showModal()">Cadastrar nova company</button></th>
                                     </tr>
                                 </thead>
 
@@ -51,17 +48,12 @@
 
                                     <tr ng-repeat="row in ceps.data">
 
-                                        <td>@{{ row.cep}} </td>
-                                        <td>@{{ row.logradouro}} </td>
-                                        <td>@{{ row.complemento}} </td>
-                                        <td>@{{ row.bairro}} </td>
-                                        <td>@{{ row.localidade}} </td>
-                                        <td>@{{ row.uf}} </td>
-                                        <td>@{{ row.unidade}} </td>
-                                        <td>@{{ row.ibge}} </td>
-                                        <td>@{{ row.gia}} </td>
+                                        <td>@{{ row.id}} </td>
+                                        <td>@{{ row.company}} </td>
+                                        <td>@{{ row.email}} </td>
                                         <td>
-                                            <button class="btn btn-danger btn-xs btn-delete" ng-click="confirmDelete(row.cep)">Delete</button>
+                                            <button class="btn btn-success btn-xs btn-success" ng-click="updateCompany(row.id)">Editar</button>
+                                            <button class="btn btn-danger btn-xs btn-delete" ng-click="confirmDelete(row.id)">Deletar</button>
                                         </td>
                                     </tr>
 
@@ -75,25 +67,38 @@
                                     <div class="modal-content">
 
                                         <div class="modal-header">
-                                            <h4 class="modal-title" id="myModalLabel">Consultar CEP</h4>
+                                            <h4 class="modal-title" id="myModalLabel">Cadastro de Company</h4>
+
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                                         </div>
 
 
                                         <div class="modal-body">
-                                            <form name="frmCep" class="form-horizontal" novalidate="">
+                                            <form name="frmCompany" class="form-horizontal" novalidate="">
                                                 <div class="form-group">
                                                     <div class="col-sm-12">
-                                                        <label for="cep" >Cep</label>
-                                                        <input type="text" class="form-control" ng-model="cep" id="cep" ui-mask="99999-999" ng-keyup="updateCepMask()" ng-pattern="/^[0-9]{5}[-]*[0-9]{3}$/" name="cep" ng-required="true">
-                                                        <span class="help-inline" ng-show="frmCep.cep.$invalid && frmCep.cep.$touched">Cep Incorreto</span>
+                                                        <label for="company" >Company</label>                                                           
+                                                        <input type="hidden" ng-model="id" id="id">
+                                                        <input type="text" class="form-control" ng-model="company" id="company" name="company" ng-required="true">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-sm-12">
+                                                        <label for="email" >Email</label>
+                                                        <input type="text" class="form-control" ng-model="email" id="email" name="email" ng-required="true"> 
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-sm-12">
+                                                        <label for="password" >Passawod</label>
+                                                        <input type="password" class="form-control" ng-model="password" id="password" name="password" ng-required="true">
                                                     </div>
                                                 </div>
                                             </form>
                                         </div>
 
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-primary" id="btn-save" ng-disabled="frmCep.cep.$invalid" ng-click="searchCep()" >Consultar</button>
+                                            <button type="button" class="btn btn-primary" id="btn-add-company"  ng-click="saveDataCompany()" >Salvar</button>
                                         </div>
 
                                     </div>
@@ -187,7 +192,7 @@
         <!-- AngularJS Application Scripts --> 
         @if(Config::get('app.debug'))
         <script src="{{ asset('assets/app/app.js')}}"></script>
-        <script src="{{ asset('assets/app/controllers/cep.js')}}"></script>
+        <script src="{{ asset('assets/app/controllers/company.js')}}"></script>
         @else
         <script src="{{ asset('assets/js/app_all.js')}}"></script>
         @endif
