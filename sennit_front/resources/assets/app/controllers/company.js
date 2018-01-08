@@ -15,7 +15,7 @@ app.controller('companyController', function ($scope, $http, API_URL, TOKEN) {
     $http.get(API_URL + "company/search?token=" + token_api)
             .then(function (success) {
                 console.log(success);
-                $scope.ceps = success;
+                $scope.companies = success;
             }, function (error) {
                 console.log(error);
             });

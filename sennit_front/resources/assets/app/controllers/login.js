@@ -8,6 +8,7 @@ app.controller('loginController', function ($scope, $http, API_URL, FRONT_URL) {
         $http.get(FRONT_URL + "authenticate?email=" + email + "&password=" + password)
         .then(function (success) {
             if (success.status = 'success') {
+                token = success.token;
                 return window.location.href = FRONT_URL;
             }
 

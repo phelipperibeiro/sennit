@@ -46,7 +46,7 @@
 
                                 <tbody>
 
-                                    <tr ng-repeat="row in ceps.data">
+                                    <tr ng-repeat="row in companies.data">
 
                                         <td>@{{ row.id}} </td>
                                         <td>@{{ row.company}} </td>

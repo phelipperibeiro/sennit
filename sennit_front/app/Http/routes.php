@@ -17,6 +17,7 @@ Route::get('/company', 'Index@company');
 Route::get('/logout', 'Auth@logout');
 Route::get('/login', 'Auth@login');
 Route::get('/authenticate', 'Auth@authenticate');
+Route::get('/get-session', 'Auth@getSession');
 
 
 
