@@ -3,6 +3,9 @@ var livereload = require('gulp-livereload');
 var clean = require('rimraf');
 var gulp = require('gulp');
 
+//var uglify = require('gulp-uglify');
+//var cleanCSS = require('gulp-clean-css');
+
 var config = {
     assets_resource: './resources/assets',
     assets_public: './public/assets'
