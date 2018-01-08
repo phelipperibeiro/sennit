@@ -1,4 +1,12 @@
 # sennit
 
-rodar composer install em (sennit_api e sennit_front)
-rodar npm install (sennit_front)
+
+## Instalação
+
+Rodar no terminal: sudo bash bash_install.sh
+
+## acesso
+
+email: fandrade@gmail.com.br
+##
+password: mudar123
