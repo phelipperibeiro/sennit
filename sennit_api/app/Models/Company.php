@@ -130,7 +130,7 @@ class Company extends Authenticatable
 
         $dataBase[$id]['email'] = isset($data['email']) ? $data['email'] : $dataBase[$id]['email'];
         $dataBase[$id]['company'] = isset($data['company']) ? $data['company'] : $dataBase[$id]['company'];
-        $dataBase[$id]['password'] = isset($data['password']) ? md5($data['password']) : $dataBase[$id]['company'];
+        $dataBase[$id]['password'] = isset($data['password']) ? md5($data['password']) : $dataBase[$id]['password'];
 
         self::saveDatabase($dataBase);
 
